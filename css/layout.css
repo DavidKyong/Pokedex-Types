@@ -1,0 +1,54 @@
+.hidden {
+  display: none !important;
+}
+
+header {
+  padding: 0 1.5rem;
+  background-color: red;
+  color: white;
+}
+
+.row {
+  display: flex;
+}
+
+.column-one-fifth {
+  flex-basis: calc(100% / 5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.body-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padd
+}
+
+.column {
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
+}
+
+img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 75%;
+}
+
+.pokemon-name {
+  display: flex;
+  justify-content: center;
+}
+
+.margin-left {
+  margin-left: 3.5rem;
+}
