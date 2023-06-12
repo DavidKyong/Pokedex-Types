@@ -1,6 +1,41 @@
-const $container = document.querySelector('.container');
+// versions['generation-v']['black-white'].animated.front_default;
 
-function getAllPokemonNames() {
+const $row = document.querySelector('.row-content');
+
+// function getPokemonName() {
+//   const xhr = new XMLHttpRequest();
+//   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon?limit=151');
+//   xhr.responseType = 'json';
+//   xhr.addEventListener('load', function () {
+//     const pokemonList = xhr.response.results;
+
+//     for (let i = 0; i < pokemonList.length; i++) {
+//       const pokemonName = pokemonList[i].name.toUpperCase();
+
+//       const $pokemonImage = document.createElement('img');
+//       $pokemonImage.setAttribute('src', imageFolder + imageFiles[i]);
+//       $column.appendChild($pokemonImage);
+
+//       const $pokemonName = document.createElement('p');
+//       $pokemonName.textContent = pokemonName;
+
+//       const $pokemonHolder = document.createElement('div');
+//       $pokemonHolder.className = 'pokemon-name';
+//       $pokemonHolder.appendChild($pokemonName);
+
+//       const $column = document.createElement('div');
+//       $column.className = 'column-one-fifth';
+//       $column.appendChild($pokemonHolder);
+
+//       $row.appendChild($column);
+
+//     }
+//   });
+//   xhr.send();
+// }
+// getPokemonName();
+
+function getAllPokemonData() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon?limit=151');
   xhr.responseType = 'json';
@@ -8,29 +43,59 @@ function getAllPokemonNames() {
     const pokemonList = xhr.response.results;
 
     for (let i = 0; i < pokemonList.length; i++) {
-      const pokemonName = pokemonList[i].name;
+      const pokemonName = pokemonList[i].name.toUpperCase();
       const $pokemonName = document.createElement('p');
       $pokemonName.textContent = pokemonName;
 
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($pokemonName);
+      const pokemonURL = pokemonList[i].url;
+      const pokemonXHR = new XMLHttpRequest();
+      pokemonXHR.open('GET', pokemonURL);
+      pokemonXHR.responseType = 'json';
+      pokemonXHR.addEventListener('load', function () {
+        const pokemonImageURL = pokemonXHR.response.sprites.versions['generation-v']['black-white'].animated.front_default;
 
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonHolder);
+        const $pokemonImage = document.createElement('img');
+        $pokemonImage.setAttribute('src', pokemonImageURL);
 
-      const $row = document.createElement('div');
-      $row.className = 'row-content';
-      $row.appendChild($column);
+        const $pokemonHolder = document.createElement('div');
+        $pokemonHolder.className = 'pokemon-name';
+        $pokemonHolder.appendChild($pokemonName);
 
-      $container.appendChild($row);
+        const $column = document.createElement('div');
+        $column.className = 'column-one-fifth';
+        $column.appendChild($pokemonImage);
+        $column.appendChild($pokemonHolder);
 
+        $row.appendChild($column);
+      });
+      pokemonXHR.send();
     }
   });
   xhr.send();
 }
-getAllPokemonNames();
+
+getAllPokemonData();
+
+function getPokemonType() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon?limit=151');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+  });
+}
+getPokemonType();
+// function getPokemonImage() {
+//   const xhr = new XMLHttpRequest();
+//   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/9');
+//   xhr.responseType = 'json';
+//   xhr.addEventListener('load', function () {
+//     console.log(xhr.response.sprites.versions['generation-v']['black-white'].animated.front_default);
+//     // const pokemonList = xhr.response.results;
+//   });
+//   xhr.send();
+// }
+
+// getPokemonImage();
 
 // function getPokemonData(name) {
 //   const xhr = new XMLHttpRequest();
