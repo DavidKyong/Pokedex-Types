@@ -19,21 +19,15 @@ header {
   align-items: center;
 }
 
-.body-content {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  padd
-}
-
 .column {
   width: 100%;
+  display: flex;
 }
 
 .navbar {
   display: flex;
   align-items: baseline;
-  justify-content: space-evenly;
+  flex-basis: 33%;
 }
 
 img {
@@ -51,4 +45,10 @@ img {
 
 .margin-left {
   margin-left: 3.5rem;
+}
+
+.row-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
