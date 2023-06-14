@@ -1108,3 +1108,29 @@ function getDragonType() {
 }
 
 getDragonType();
+
+const $titleRow = document.querySelector('.row.title-row');
+
+// function viewSwap(typename) {
+//   if (typename === 'types') {
+//     $allPokemon.className = 'row-content hidden';
+//     $titleRow.className = 'row title-row show';
+//   } else if (typename === 'all') {
+//     $allPokemon.className = 'row-content';
+//     $titleRow.className = 'row title-row hidden';
+//   }
+// }
+
+const $type = document.querySelector('.navbar-type');
+
+$type.addEventListener('click', function (event) {
+  $row.className = 'row-content hidden';
+  $titleRow.className = 'row title-row hidden';
+});
+
+const $pokedex = document.querySelector('h1');
+
+$pokedex.addEventListener('click', function (event) {
+  $row.className = 'row-content';
+  $titleRow.className = 'row title-row';
+});
