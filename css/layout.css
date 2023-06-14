@@ -1,0 +1,91 @@
+.hidden {
+  display: none !important;
+}
+
+.row {
+  display: flex;
+}
+
+.baseline {
+  display: flex;
+  align-items: baseline;
+}
+
+.column-half {
+  flex-basis: 100%;
+}
+
+.column-one-fifth {
+  flex-basis: calc(100% / 3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.title-page {
+  margin-left: 1rem;
+}
+
+img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 60%;
+}
+
+.pokemon-name {
+  display: flex;
+  justify-content: center;
+}
+
+.row-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.head-title {
+  margin-left: 1rem;
+}
+
+input {
+  padding: 0.5rem;
+  width: 90%;
+}
+
+.navbar-sub {
+  display: flex;
+  gap: 1rem;
+  margin-left: 3rem;
+}
+
+.align {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .column-one-fifth {
+    flex-basis: calc(100% / 5);
+  }
+
+  .column-full,
+  .column-half,
+  .column-one-fifth {
+    padding: 0 0.75rem;
+  }
+
+  .column-half.align {
+    display: flex;
+    justify-content: center;
+    margin-left: 10rem;
+  }
+
+  .column-half.navbar-sub {
+    display: flex;
+    justify-content: center;
+    gap: 8rem;
+  }
+}
