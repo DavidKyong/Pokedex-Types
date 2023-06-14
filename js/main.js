@@ -1,6 +1,6 @@
 const imageFolder = 'images/';
 
-const imageFiles = [
+const allPokemon = [
   'bulbasaur.gif',
   'Ivysaur.gif',
   'Venasaur.gif',
@@ -154,7 +154,131 @@ const imageFiles = [
   'mew.gif'
 ];
 
+// const bug = [
+//   'caterpie.gif',
+//   'metapod.gif',
+//   'butterfree.gif',
+//   'weedle.gif',
+//   'kakuna.gif',
+//   'beedrill.gif',
+//   'paras.gif',
+//   'parasect.gif',
+//   'venonat.gif',
+//   'venomoth.gif',
+//   'scyther.gif',
+//   'pinsir.gif'
+// ];
+
+// const dragon = [
+//   'dratini.gif',
+//   'dragonair.gif',
+//   'dragonite.gif'
+// ];
+
+// const electric = [
+//   'pikachu.gif',
+//   'raichu.gif',
+//   'magnemite.gif',
+//   'magneton.gif',
+//   'voltorb.gif',
+//   'electrode.gif',
+//   'electabuzz.gif',
+//   'jolteon.gif',
+//   'zapdos.gif'
+// ];
+
+// const fighting = [
+//   'mankey.gif',
+//   'primeape',
+//   'poliwrath.gif',
+//   'machop.gif',
+//   'machoke.gif',
+//   'machamp.gif',
+//   'hitmonlee.gif',
+//   'hitnonchan.gif',
+//   'primeape'
+// ];
+
+// const grass = [
+//   'bulbasaur.gif',
+//   'ivysaur.gif',
+//   'venasaur.gif',
+//   'oddish.gif',
+//   'gloom.gif',
+//   'vileplume.gif',
+//   'paras.gif',
+//   'parasect.gif',
+//   'bellsprout.gif',
+//   'weepinbell.gif',
+//   'victreebel.gif',
+//   'exeggcute.gif',
+//   'exeggutor.gif',
+//   'tangela.gif'
+// ];
+
+// const poison = [
+//   'bulbasaur.gif',
+//   'ivysaur.gif',
+//   'venasaur.gif',
+//   'weedle.gif',
+//   'kakuna.gif',
+//   'beedrill.gif',
+//   'nidoran.gif',
+//   'nidorina.gif',
+//   'nidoqueen.gif',
+//   'nidoran M.gif',
+//   'nidorino.gif',
+//   'nidoking.gif',
+//   'oddish.gif',
+//   'gloom.gif',
+//   'vileplume.gif',
+//   'venonat.gif',
+//   'venomoth.gif',
+//   'bellsprout.gif',
+//   'weepinbell.gif',
+//   'victreebel.gif'
+// ];
+
+// const fire = [];
+
+// const flying = [];
+
+// const water = [
+
+// ];
+
+// const normal = [];
+
+// const ground = [];
+
+// const fairy = [];
+
+// const psychic = [];
+
+// const rock = [];
+
+// const steel = [];
+
+// const ice = [];
+
+// const ghost = [];
+
 const $row = document.querySelector('.row-content');
+// const $waterRow = document.querySelector('.row.water');
+// const $fireRow = document.querySelector('.row.fire');
+// const $bugRow = document.querySelector('.row.bug');
+// const $dragonRow = document.querySelector('.row.dragon');
+// const $electricRow = document.querySelector('.row.electric');
+// const $fightingRow = document.querySelector('.row.fighting');
+// const $flyingRow = document.querySelector('.row.flying');
+// const $ghostRow = document.querySelector('.row.ghost');
+// const $grassRow = document.querySelector('.row.grass');
+// const $groundRow = document.querySelector('.row.ground');
+// const $iceRow = document.querySelector('.row.ice');
+// const $normalRow = document.querySelector('.row.normal');
+// const $poisonRow = document.querySelector('.row.poison');
+// const $psychicRow = document.querySelector('.row.psychic');
+// const $rockRow = document.querySelector('.row.rock');
 
 function getPokemonName() {
   const xhr = new XMLHttpRequest();
@@ -171,7 +295,7 @@ function getPokemonName() {
       $pokemonName.textContent = pokemonName + ' #' + pokemonEntryID;
 
       const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + imageFiles[i]);
+      $pokemonImage.setAttribute('src', imageFolder + allPokemon[i]);
       $pokemonImage.setAttribute('alt', 'pokemon');
 
       const $pokemonHolder = document.createElement('div');
@@ -190,3 +314,40 @@ function getPokemonName() {
 }
 
 getPokemonName();
+
+function getNormalType() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
+  xhr.responseType = 'json';
+
+  xhr.addEventListener('load', function (event) {
+    const typeList = xhr.response.results;
+    const typeURL = typeList[0].url;
+
+    const typeXHR = new XMLHttpRequest();
+    typeXHR.open('GET', typeURL);
+    typeXHR.responseType = 'json';
+
+    typeXHR.addEventListener('load', function (event) {
+      const normalType = typeXHR.response.pokemon;
+      for (let i = 0; i <= 21; i++) {
+        const pokemonName = normalType[i].pokemon.name;
+        const $normalType = document.createElement('p');
+        $normalType.textContent = pokemonName;
+
+        const $pokemonHolder = document.createElement('div');
+        $pokemonHolder.className = 'pokemon-name';
+        $pokemonHolder.appendChild($normalType);
+
+        const $column = document.createElement('div');
+        $column.className = 'column-one-fifth';
+        // $column.appendChild($pokemonImage);
+        $column.appendChild($pokemonHolder);
+
+      }
+    });
+    typeXHR.send();
+  });
+  xhr.send();
+}
+getNormalType();
