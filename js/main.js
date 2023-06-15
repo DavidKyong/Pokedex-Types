@@ -467,6 +467,28 @@ function getPokemonName() {
 }
 getPokemonName();
 
+function renderPokemon(pokemon, imagePath, row) {
+  const pokemonName = pokemon.pokemon.name.toUpperCase();
+  const $type = document.createElement('p');
+  $type.textContent = pokemonName;
+
+  const $pokemonImage = document.createElement('img');
+  $pokemonImage.setAttribute('src', imageFolder + imagePath);
+  $pokemonImage.setAttribute('alt', 'pokemon');
+
+  const $pokemonHolder = document.createElement('div');
+  $pokemonHolder.className = 'pokemon-name';
+  $pokemonHolder.appendChild($type);
+
+  const $column = document.createElement('div');
+  $column.className = 'column-one-fifth';
+  $column.appendChild($pokemonImage);
+  $column.appendChild($pokemonHolder);
+
+  row.appendChild($column);
+
+}
+
 function getDragonType() {
   const typeXHR = new XMLHttpRequest();
   typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/15');
@@ -475,24 +497,7 @@ function getDragonType() {
   typeXHR.addEventListener('load', function (event) {
     const dragonType = typeXHR.response.pokemon;
     for (let i = 0; i <= 2; i++) {
-      const pokemonName = dragonType[i].pokemon.name.toUpperCase();
-      const $dragonType = document.createElement('p');
-      $dragonType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + dragon[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($dragonType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $dragonRow.appendChild($column);
+      renderPokemon(dragonType[i], dragon[i], $dragonRow);
     }
   });
   typeXHR.send();
@@ -500,31 +505,13 @@ function getDragonType() {
 getDragonType();
 
 function getNormalType() {
-
   const typeXHR = new XMLHttpRequest();
   typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/1/');
   typeXHR.responseType = 'json';
   typeXHR.addEventListener('load', function (event) {
     const normalType = typeXHR.response.pokemon;
     for (let i = 0; i <= 21; i++) {
-      const pokemonName = normalType[i].pokemon.name.toUpperCase();
-      const $normalType = document.createElement('p');
-      $normalType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + normal[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($normalType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $normalRow.appendChild($column);
+      renderPokemon(normalType[i], normal[i], $normalRow);
     }
   });
   typeXHR.send();
@@ -532,7 +519,6 @@ function getNormalType() {
 getNormalType();
 
 function getfightingType() {
-
   const typeXHR = new XMLHttpRequest();
   typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/2/');
   typeXHR.responseType = 'json';
@@ -540,24 +526,7 @@ function getfightingType() {
   typeXHR.addEventListener('load', function (event) {
     const fightingType = typeXHR.response.pokemon;
     for (let i = 0; i <= 7; i++) {
-      const pokemonName = fightingType[i].pokemon.name.toUpperCase();
-      const $fightingType = document.createElement('p');
-      $fightingType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + fighting[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($fightingType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $fightingRow.appendChild($column);
+      renderPokemon(fightingType[i], fighting[i], $fightingRow);
     }
   });
   typeXHR.send();
@@ -573,24 +542,7 @@ function getflyingType() {
   typeXHR.addEventListener('load', function (event) {
     const flyingType = typeXHR.response.pokemon;
     for (let i = 0; i <= 18; i++) {
-      const pokemonName = flyingType[i].pokemon.name.toUpperCase();
-      const $flyingType = document.createElement('p');
-      $flyingType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + flying[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($flyingType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $flyingRow.appendChild($column);
+      renderPokemon(flyingType[i], flying[i], $flyingRow);
     }
   });
   typeXHR.send();
@@ -605,24 +557,7 @@ function getPoisonType() {
   typeXHR.addEventListener('load', function (event) {
     const poisonType = typeXHR.response.pokemon;
     for (let i = 0; i <= 32; i++) {
-      const pokemonName = poisonType[i].pokemon.name.toUpperCase();
-      const $poisonType = document.createElement('p');
-      $poisonType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + poison[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($poisonType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $poisonRow.appendChild($column);
+      renderPokemon(poisonType[i], poison[i], $poisonRow);
     }
   });
   typeXHR.send();
@@ -637,24 +572,7 @@ function getGroundType() {
   typeXHR.addEventListener('load', function (event) {
     const groundType = typeXHR.response.pokemon;
     for (let i = 0; i <= 13; i++) {
-      const pokemonName = groundType[i].pokemon.name.toUpperCase();
-      const $groundType = document.createElement('p');
-      $groundType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + ground[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($groundType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $groundRow.appendChild($column);
+      renderPokemon(groundType[i], ground[i], $groundRow);
     }
   });
   typeXHR.send();
@@ -669,24 +587,7 @@ function getElectricType() {
   typeXHR.addEventListener('load', function (event) {
     const electricType = typeXHR.response.pokemon;
     for (let i = 0; i <= 8; i++) {
-      const pokemonName = electricType[i].pokemon.name.toUpperCase();
-      const $electricType = document.createElement('p');
-      $electricType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + electric[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($electricType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $electricRow.appendChild($column);
+      renderPokemon(electricType[i], electric[i], $electricRow);
     }
   });
   typeXHR.send();
@@ -701,24 +602,7 @@ function getRockType() {
   typeXHR.addEventListener('load', function (event) {
     const rockType = typeXHR.response.pokemon;
     for (let i = 0; i <= 10; i++) {
-      const pokemonName = rockType[i].pokemon.name.toUpperCase();
-      const $rockType = document.createElement('p');
-      $rockType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + rock[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($rockType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $rockRow.appendChild($column);
+      renderPokemon(rockType[i], rock[i], $rockRow);
     }
   });
   typeXHR.send();
@@ -733,24 +617,7 @@ function getBugType() {
   typeXHR.addEventListener('load', function (event) {
     const bugType = typeXHR.response.pokemon;
     for (let i = 0; i <= 11; i++) {
-      const pokemonName = bugType[i].pokemon.name.toUpperCase();
-      const $bugType = document.createElement('p');
-      $bugType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + bug[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($bugType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $bugRow.appendChild($column);
+      renderPokemon(bugType[i], bug[i], $bugRow);
     }
   });
   typeXHR.send();
@@ -765,24 +632,7 @@ function getGhostType() {
   typeXHR.addEventListener('load', function (event) {
     const ghostType = typeXHR.response.pokemon;
     for (let i = 0; i <= 2; i++) {
-      const pokemonName = ghostType[i].pokemon.name.toUpperCase();
-      const $ghostType = document.createElement('p');
-      $ghostType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + ghost[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($ghostType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $ghostRow.appendChild($column);
+      renderPokemon(ghostType[i], ghost[i], $ghostRow);
     }
   });
   typeXHR.send();
@@ -797,24 +647,7 @@ function getFireType() {
   typeXHR.addEventListener('load', function (event) {
     const fireType = typeXHR.response.pokemon;
     for (let i = 0; i <= 11; i++) {
-      const pokemonName = fireType[i].pokemon.name.toUpperCase();
-      const $fireType = document.createElement('p');
-      $fireType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + fire[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($fireType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $fireRow.appendChild($column);
+      renderPokemon(fireType[i], fire[i], $fireRow);
     }
   });
   typeXHR.send();
@@ -829,24 +662,7 @@ function getWaterType() {
   typeXHR.addEventListener('load', function (event) {
     const waterType = typeXHR.response.pokemon;
     for (let i = 0; i <= 31; i++) {
-      const pokemonName = waterType[i].pokemon.name.toUpperCase();
-      const $waterType = document.createElement('p');
-      $waterType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + water[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($waterType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $waterRow.appendChild($column);
+      renderPokemon(waterType[i], water[i], $waterRow);
     }
   });
   typeXHR.send();
@@ -861,24 +677,7 @@ function getGrassType() {
   typeXHR.addEventListener('load', function (event) {
     const grassType = typeXHR.response.pokemon;
     for (let i = 0; i <= 13; i++) {
-      const pokemonName = grassType[i].pokemon.name.toUpperCase();
-      const $grassType = document.createElement('p');
-      $grassType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + grass[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($grassType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $grassRow.appendChild($column);
+      renderPokemon(grassType[i], grass[i], $grassRow);
     }
   });
   typeXHR.send();
@@ -893,24 +692,7 @@ function getPsychicType() {
   typeXHR.addEventListener('load', function (event) {
     const psychicType = typeXHR.response.pokemon;
     for (let i = 0; i <= 13; i++) {
-      const pokemonName = psychicType[i].pokemon.name.toUpperCase();
-      const $psychicType = document.createElement('p');
-      $psychicType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + psychic[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($psychicType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $psychicRow.appendChild($column);
+      renderPokemon(psychicType[i], psychic[i], $psychicRow);
     }
   });
   typeXHR.send();
@@ -925,24 +707,7 @@ function getIceType() {
   typeXHR.addEventListener('load', function (event) {
     const iceType = typeXHR.response.pokemon;
     for (let i = 0; i <= 4; i++) {
-      const pokemonName = iceType[i].pokemon.name.toUpperCase();
-      const $iceType = document.createElement('p');
-      $iceType.textContent = pokemonName;
-
-      const $pokemonImage = document.createElement('img');
-      $pokemonImage.setAttribute('src', imageFolder + ice[i]);
-      $pokemonImage.setAttribute('alt', 'pokemon');
-
-      const $pokemonHolder = document.createElement('div');
-      $pokemonHolder.className = 'pokemon-name';
-      $pokemonHolder.appendChild($iceType);
-
-      const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
-      $column.appendChild($pokemonImage);
-      $column.appendChild($pokemonHolder);
-
-      $iceRow.appendChild($column);
+      renderPokemon(iceType[i], ice[i], $iceRow);
     }
   });
   typeXHR.send();
