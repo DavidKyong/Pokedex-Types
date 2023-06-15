@@ -429,6 +429,9 @@ const $normalRow = document.querySelector('.row.normal');
 const $poisonRow = document.querySelector('.row.poison');
 const $psychicRow = document.querySelector('.row.psychic');
 const $rockRow = document.querySelector('.row.rock');
+const $titleRow = document.querySelector('.row.title-row');
+const $type = document.querySelector('.navbar-type');
+const $pokedex = document.querySelector('h1');
 
 function getPokemonName() {
   const xhr = new XMLHttpRequest();
@@ -465,668 +468,550 @@ function getPokemonName() {
 
 getPokemonName();
 
-function getNormalType() {
+function getAllType() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/type');
   xhr.responseType = 'json';
 
   xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[0].url;
+    function getDragonType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[15].url;
 
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
 
-    typeXHR.addEventListener('load', function (event) {
-      const normalType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 21; i++) {
-        const pokemonName = normalType[i].pokemon.name.toUpperCase();
-        const $normalType = document.createElement('p');
-        $normalType.textContent = pokemonName;
+      typeXHR.addEventListener('load', function (event) {
+        const dragonType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 2; i++) {
+          const pokemonName = dragonType[i].pokemon.name.toUpperCase();
+          const $dragonType = document.createElement('p');
+          $dragonType.textContent = pokemonName;
 
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + normal[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + dragon[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
 
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($normalType);
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($dragonType);
 
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
 
-        $normalRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
+          $dragonRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getDragonType();
+
+    function getIceType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[14].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const iceType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 4; i++) {
+          const pokemonName = iceType[i].pokemon.name.toUpperCase();
+          const $iceType = document.createElement('p');
+          $iceType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + ice[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($iceType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $iceRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getIceType();
+
+    function getPsychicType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[13].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const psychicType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 13; i++) {
+          const pokemonName = psychicType[i].pokemon.name.toUpperCase();
+          const $psychicType = document.createElement('p');
+          $psychicType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + psychic[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($psychicType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $psychicRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getPsychicType();
+
+    function getElectricType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[12].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const electricType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 8; i++) {
+          const pokemonName = electricType[i].pokemon.name.toUpperCase();
+          const $electricType = document.createElement('p');
+          $electricType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + electric[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($electricType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $electricRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getElectricType();
+
+    function getGrassType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[11].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const grassType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 13; i++) {
+          const pokemonName = grassType[i].pokemon.name.toUpperCase();
+          const $grassType = document.createElement('p');
+          $grassType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + grass[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($grassType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $grassRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getGrassType();
+
+    function getWaterType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[10].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const waterType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 31; i++) {
+          const pokemonName = waterType[i].pokemon.name.toUpperCase();
+          const $waterType = document.createElement('p');
+          $waterType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + water[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($waterType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $waterRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getWaterType();
+
+    function getFireType() {
+
+      const typeList = xhr.response.results;
+      const typeURL = typeList[9].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const fireType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 11; i++) {
+          const pokemonName = fireType[i].pokemon.name.toUpperCase();
+          const $fireType = document.createElement('p');
+          $fireType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + fire[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($fireType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $fireRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getFireType();
+
+    function getGhostType() {
+
+      const typeList = xhr.response.results;
+      const typeURL = typeList[7].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const ghostType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 2; i++) {
+          const pokemonName = ghostType[i].pokemon.name.toUpperCase();
+          const $ghostType = document.createElement('p');
+          $ghostType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + ghost[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($ghostType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $ghostRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getGhostType();
+
+    function getBugType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[6].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const bugType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 11; i++) {
+          const pokemonName = bugType[i].pokemon.name.toUpperCase();
+          const $bugType = document.createElement('p');
+          $bugType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + bug[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($bugType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $bugRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getBugType();
+
+    function getRockType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[5].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const rockType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 10; i++) {
+          const pokemonName = rockType[i].pokemon.name.toUpperCase();
+          const $rockType = document.createElement('p');
+          $rockType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + rock[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($rockType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $rockRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+
+    getRockType();
+
+    function getGroundType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[4].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const groundType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 13; i++) {
+          const pokemonName = groundType[i].pokemon.name.toUpperCase();
+          const $groundType = document.createElement('p');
+          $groundType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + ground[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($groundType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $groundRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getGroundType();
+
+    function getPoisonType() {
+
+      const typeList = xhr.response.results;
+      const typeURL = typeList[3].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const poisonType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 32; i++) {
+          const pokemonName = poisonType[i].pokemon.name.toUpperCase();
+          const $poisonType = document.createElement('p');
+          $poisonType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + poison[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($poisonType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $poisonRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getPoisonType();
+
+    function getflyingType() {
+
+      const typeList = xhr.response.results;
+      const typeURL = typeList[2].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const flyingType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 18; i++) {
+          const pokemonName = flyingType[i].pokemon.name.toUpperCase();
+          const $flyingType = document.createElement('p');
+          $flyingType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + flying[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($flyingType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $flyingRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getflyingType();
+
+    function getfightingType() {
+
+      const typeList = xhr.response.results;
+      const typeURL = typeList[1].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+
+      typeXHR.addEventListener('load', function (event) {
+        const fightingType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 7; i++) {
+          const pokemonName = fightingType[i].pokemon.name.toUpperCase();
+          const $fightingType = document.createElement('p');
+          $fightingType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + fighting[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($fightingType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $fightingRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getfightingType();
+
+    function getNormalType() {
+      const typeList = xhr.response.results;
+      const typeURL = typeList[0].url;
+
+      const typeXHR = new XMLHttpRequest();
+      typeXHR.open('GET', typeURL);
+      typeXHR.responseType = 'json';
+      typeXHR.addEventListener('load', function (event) {
+        const normalType = typeXHR.response.pokemon;
+        for (let i = 0; i <= 21; i++) {
+          const pokemonName = normalType[i].pokemon.name.toUpperCase();
+          const $normalType = document.createElement('p');
+          $normalType.textContent = pokemonName;
+
+          const $pokemonImage = document.createElement('img');
+          $pokemonImage.setAttribute('src', imageFolder + normal[i]);
+          $pokemonImage.setAttribute('alt', 'pokemon');
+
+          const $pokemonHolder = document.createElement('div');
+          $pokemonHolder.className = 'pokemon-name';
+          $pokemonHolder.appendChild($normalType);
+
+          const $column = document.createElement('div');
+          $column.className = 'column-one-fifth';
+          $column.appendChild($pokemonImage);
+          $column.appendChild($pokemonHolder);
+
+          $normalRow.appendChild($column);
+        }
+      });
+      typeXHR.send();
+    }
+    getNormalType();
   });
   xhr.send();
 }
-getNormalType();
-
-function getfightingType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[1].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const fightingType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 7; i++) {
-        const pokemonName = fightingType[i].pokemon.name.toUpperCase();
-        const $fightingType = document.createElement('p');
-        $fightingType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + fighting[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($fightingType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $fightingRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-getfightingType();
-
-function getflyingType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[2].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const flyingType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 18; i++) {
-        const pokemonName = flyingType[i].pokemon.name.toUpperCase();
-        const $flyingType = document.createElement('p');
-        $flyingType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + flying[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($flyingType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $flyingRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getflyingType();
-
-function getPoisonType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[3].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const poisonType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 32; i++) {
-        const pokemonName = poisonType[i].pokemon.name.toUpperCase();
-        const $poisonType = document.createElement('p');
-        $poisonType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + poison[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($poisonType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $poisonRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-getPoisonType();
-
-function getGroundType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[4].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const groundType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 13; i++) {
-        const pokemonName = groundType[i].pokemon.name.toUpperCase();
-        const $groundType = document.createElement('p');
-        $groundType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + ground[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($groundType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $groundRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getGroundType();
-
-function getRockType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[5].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const rockType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 10; i++) {
-        const pokemonName = rockType[i].pokemon.name.toUpperCase();
-        const $rockType = document.createElement('p');
-        $rockType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + rock[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($rockType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $rockRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getRockType();
-
-function getBugType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[6].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const bugType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 11; i++) {
-        const pokemonName = bugType[i].pokemon.name.toUpperCase();
-        const $bugType = document.createElement('p');
-        $bugType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + bug[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($bugType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $bugRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getBugType();
-
-function getGhostType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[7].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const ghostType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 2; i++) {
-        const pokemonName = ghostType[i].pokemon.name.toUpperCase();
-        const $ghostType = document.createElement('p');
-        $ghostType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + ghost[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($ghostType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $ghostRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getGhostType();
-
-function getFireType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[9].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const fireType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 11; i++) {
-        const pokemonName = fireType[i].pokemon.name.toUpperCase();
-        const $fireType = document.createElement('p');
-        $fireType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + fire[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($fireType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $fireRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getFireType();
-
-function getWaterType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[10].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const waterType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 31; i++) {
-        const pokemonName = waterType[i].pokemon.name.toUpperCase();
-        const $waterType = document.createElement('p');
-        $waterType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + water[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($waterType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $waterRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getWaterType();
-
-function getGrassType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[11].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const grassType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 13; i++) {
-        const pokemonName = grassType[i].pokemon.name.toUpperCase();
-        const $grassType = document.createElement('p');
-        $grassType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + grass[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($grassType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $grassRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getGrassType();
-
-function getElectricType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[12].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const electricType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 8; i++) {
-        const pokemonName = electricType[i].pokemon.name.toUpperCase();
-        const $electricType = document.createElement('p');
-        $electricType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + electric[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($electricType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $electricRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getElectricType();
-
-function getPsychicType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[13].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const psychicType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 13; i++) {
-        const pokemonName = psychicType[i].pokemon.name.toUpperCase();
-        const $psychicType = document.createElement('p');
-        $psychicType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + psychic[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($psychicType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $psychicRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getPsychicType();
-
-function getIceType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[14].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const iceType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 4; i++) {
-        const pokemonName = iceType[i].pokemon.name.toUpperCase();
-        const $iceType = document.createElement('p');
-        $iceType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + ice[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($iceType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $iceRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getIceType();
-
-function getDragonType() {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/type');
-  xhr.responseType = 'json';
-
-  xhr.addEventListener('load', function (event) {
-    const typeList = xhr.response.results;
-    const typeURL = typeList[15].url;
-
-    const typeXHR = new XMLHttpRequest();
-    typeXHR.open('GET', typeURL);
-    typeXHR.responseType = 'json';
-
-    typeXHR.addEventListener('load', function (event) {
-      const dragonType = typeXHR.response.pokemon;
-      for (let i = 0; i <= 2; i++) {
-        const pokemonName = dragonType[i].pokemon.name.toUpperCase();
-        const $dragonType = document.createElement('p');
-        $dragonType.textContent = pokemonName;
-
-        const $pokemonImage = document.createElement('img');
-        $pokemonImage.setAttribute('src', imageFolder + dragon[i]);
-        $pokemonImage.setAttribute('alt', 'pokemon');
-
-        const $pokemonHolder = document.createElement('div');
-        $pokemonHolder.className = 'pokemon-name';
-        $pokemonHolder.appendChild($dragonType);
-
-        const $column = document.createElement('div');
-        $column.className = 'column-one-fifth';
-        $column.appendChild($pokemonImage);
-        $column.appendChild($pokemonHolder);
-
-        $dragonRow.appendChild($column);
-      }
-    });
-    typeXHR.send();
-  });
-  xhr.send();
-}
-
-getDragonType();
-
-const $titleRow = document.querySelector('.row.title-row');
-
-// function viewSwap(typename) {
-//   if (typename === 'types') {
-//     $allPokemon.className = 'row-content hidden';
-//     $titleRow.className = 'row title-row show';
-//   } else if (typename === 'all') {
-//     $allPokemon.className = 'row-content';
-//     $titleRow.className = 'row title-row hidden';
-//   } maybe use for saved pokemons
-// }
-
-const $type = document.querySelector('.navbar-type');
+getAllType();
 
 $type.addEventListener('click', function (event) {
   $row.className = 'row-content hidden';
   $titleRow.className = 'row title-row hidden';
 });
-
-const $pokedex = document.querySelector('h1');
 
 $pokedex.addEventListener('click', function (event) {
   $row.className = 'row-content';
