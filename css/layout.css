@@ -2,7 +2,8 @@
   display: none !important;
 }
 
-.row {
+.row,
+.row.normal {
   display: flex;
 }
 
@@ -40,7 +41,22 @@ img {
   justify-content: center;
 }
 
-.row-content {
+.row-content,
+.row.normal,
+.row.fighting,
+.row.flying,
+.row.poison,
+.row.ground,
+.row.rock,
+.row.bug,
+.row.ghost,
+.row.fire,
+.row.water,
+.row.psychic,
+.row.ice,
+.row.dragon,
+.row.grass,
+.row.electric {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -48,6 +64,8 @@ img {
 
 .head-title {
   margin-left: 1rem;
+  display: flex;
+  justify-content: left;
 }
 
 input {
