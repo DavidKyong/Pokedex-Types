@@ -64,6 +64,8 @@ img {
 
 .head-title {
   margin-left: 1rem;
+  display: flex;
+  justify-content: left;
 }
 
 input {

@@ -1064,8 +1064,6 @@ function getIceType() {
 
 getIceType();
 
-getPsychicType();
-
 function getDragonType() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/type');
@@ -1118,7 +1116,7 @@ const $titleRow = document.querySelector('.row.title-row');
 //   } else if (typename === 'all') {
 //     $allPokemon.className = 'row-content';
 //     $titleRow.className = 'row title-row hidden';
-//   }
+//   } maybe use for saved pokemons
 // }
 
 const $type = document.querySelector('.navbar-type');
