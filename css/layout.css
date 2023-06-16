@@ -41,7 +41,8 @@ img {
   justify-content: center;
 }
 
-.row-select,
+.row.saved-pokemon,
+.row.select,
 .row-content,
 .row.normal,
 .row.fighting,
