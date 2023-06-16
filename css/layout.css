@@ -41,6 +41,7 @@ img {
   justify-content: center;
 }
 
+.row-select,
 .row-content,
 .row.normal,
 .row.fighting,
@@ -60,6 +61,11 @@ img {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.column-half.select {
+  display: flex;
+  justify-content: center;
 }
 
 .head-title {
@@ -87,6 +93,10 @@ input {
 @media screen and (min-width: 768px) {
   .column-one-fifth {
     flex-basis: calc(100% / 5);
+  }
+
+  .column-half {
+    flex-basis: 50%;
   }
 
   .column-full,
