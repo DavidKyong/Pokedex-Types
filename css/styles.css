@@ -40,3 +40,7 @@ h1:hover {
 .navbar-type:hover {
   cursor: pointer;
 }
+
+.row-content > .column-one-fifth > img:hover {
+  cursor: pointer;
+}
