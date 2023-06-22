@@ -931,13 +931,30 @@ $row.addEventListener('click', function (event) {
     $columnSelect.className = 'column-half select';
     $columnSelect.appendChild($pokemonPic);
 
+    const formattedPokemonName = selectedPokemon.replace('images/', '').replace('.gif', '');
+
     const $pokemonTitle = document.createElement('h2');
     $pokemonTitle.setAttribute('id', 'pokemon-name');
-    $pokemonTitle.textContent = selectedPokemon;
+    $pokemonTitle.textContent = formattedPokemonName.toUpperCase();
+
+    const $icon = document.createElement('span');
+    $icon.className = 'fa-solid fa-circle-plus';
+    $icon.textContent = 'placeholder';
+
+    $icon.addEventListener('click', function () {
+      const savedPokemon = {
+        name: formattedPokemonName.toUpperCase(),
+        image: selectedPokemon
+      };
+      viewSwap('saved');
+      savedPokemon();
+      // console.log('Saved Pokemon:', savedPokemon);
+    });
 
     const $pageTitle = document.createElement('div');
-    $pageTitle.className = 'page-title';
+    $pageTitle.className = 'page-title one-pokemon';
     $pageTitle.appendChild($pokemonTitle);
+    $pageTitle.appendChild($icon);
 
     const $column = document.createElement('div');
     $column.className = 'column';
@@ -946,6 +963,7 @@ $row.addEventListener('click', function (event) {
     $oneRowPokemonPic.appendChild($columnSelect);
     $oneRowPokemonPic.appendChild($columnHalf);
     $pokemonInfo.appendChild($column);
+
     viewSwap('onePokemon');
   }
 });

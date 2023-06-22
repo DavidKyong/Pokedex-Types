@@ -68,6 +68,7 @@ img {
 .column-half.select {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .head-title {
@@ -118,4 +119,27 @@ input {
     justify-content: center;
     gap: 8rem;
   }
+
+  .column-half.select > img {
+    width: 40%;
+    height: 60%;
+  }
+}
+
+.row.pokemon-info {
+  display: block;
+}
+
+.page-title.one-pokemon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#pokemon-name {
+  margin-left: 1.5rem;
+}
+
+.fa-solid.fa-circle-plus {
+  margin-right: 1.5rem;
 }
