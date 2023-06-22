@@ -44,3 +44,7 @@ h1:hover {
 .row-content > .column-one-fifth > img:hover {
   cursor: pointer;
 }
+
+i {
+  color: rgb(56, 92, 169);
+}

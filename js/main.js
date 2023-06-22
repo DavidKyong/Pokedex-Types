@@ -511,7 +511,7 @@ function renderPokemon(pokemon, imagePath, row) {
 
 function getDragonType() {
   const typeXHR = new XMLHttpRequest();
-  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/15');
+  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/16');
   typeXHR.responseType = 'json';
 
   typeXHR.addEventListener('load', function (event) {
@@ -937,9 +937,8 @@ $row.addEventListener('click', function (event) {
     $pokemonTitle.setAttribute('id', 'pokemon-name');
     $pokemonTitle.textContent = formattedPokemonName.toUpperCase();
 
-    const $icon = document.createElement('span');
-    $icon.className = 'fa-solid fa-circle-plus';
-    $icon.textContent = 'placeholder';
+    const $icon = document.createElement('i');
+    $icon.className = 'fa-solid fa-circle-plus fa-2xl';
 
     $icon.addEventListener('click', function () {
       const savedPokemon = {
