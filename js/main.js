@@ -489,7 +489,6 @@ getPokemonName();
 function renderPokemon(pokemon, imagePath, row) {
   const pokemonName = pokemon.pokemon.name.toUpperCase();
   const $type = document.createElement('p');
-
   $type.textContent = pokemonName;
 
   const $pokemonImage = document.createElement('img');
@@ -506,8 +505,22 @@ function renderPokemon(pokemon, imagePath, row) {
   $column.appendChild($pokemonHolder);
 
   row.appendChild($column);
-
 }
+
+function getBugType() {
+  const typeXHR = new XMLHttpRequest();
+  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/7/');
+  typeXHR.responseType = 'json';
+
+  typeXHR.addEventListener('load', function (event) {
+    const bugType = typeXHR.response.pokemon;
+    for (let i = 0; i <= 11; i++) {
+      renderPokemon(bugType[i], bug[i], $bugRow);
+    }
+  });
+  typeXHR.send();
+}
+getBugType();
 
 function getDragonType() {
   const typeXHR = new XMLHttpRequest();
@@ -526,7 +539,7 @@ getDragonType();
 
 function getNormalType() {
   const typeXHR = new XMLHttpRequest();
-  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/1/');
+  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/1');
   typeXHR.responseType = 'json';
   typeXHR.addEventListener('load', function (event) {
     const normalType = typeXHR.response.pokemon;
@@ -628,21 +641,6 @@ function getRockType() {
   typeXHR.send();
 }
 getRockType();
-
-function getBugType() {
-  const typeXHR = new XMLHttpRequest();
-  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/7/');
-  typeXHR.responseType = 'json';
-
-  typeXHR.addEventListener('load', function (event) {
-    const bugType = typeXHR.response.pokemon;
-    for (let i = 0; i <= 11; i++) {
-      renderPokemon(bugType[i], bug[i], $bugRow);
-    }
-  });
-  typeXHR.send();
-}
-getBugType();
 
 function getGhostType() {
   const typeXHR = new XMLHttpRequest();
@@ -941,13 +939,14 @@ $row.addEventListener('click', function (event) {
     $icon.className = 'fa-solid fa-circle-plus fa-2xl';
 
     $icon.addEventListener('click', function () {
+
       const savedPokemon = {
         name: formattedPokemonName.toUpperCase(),
         image: selectedPokemon
       };
+      // eslint-disable-next-line no-undef
+      pokemonData.saved.push(savedPokemon);
       viewSwap('saved');
-      savedPokemon();
-      // console.log('Saved Pokemon:', savedPokemon);
     });
 
     const $pageTitle = document.createElement('div');
