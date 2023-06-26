@@ -432,6 +432,25 @@ const $rockRow = document.querySelector('.row.rock');
 const $titleRow = document.querySelector('.row.title-row');
 const $type = document.querySelector('.navbar-type');
 const $pokedex = document.querySelector('h1');
+const $bugTitle = document.querySelector('.row.bug-type');
+const $dragonTitle = document.querySelector('.row.dragon-type');
+const $electricTitle = document.querySelector('.row.electric-type');
+const $fightingTitle = document.querySelector('.row.fighting-type');
+const $fireTitle = document.querySelector('.row.fire-type');
+const $flyingTitle = document.querySelector('.row.flying-type');
+const $ghostTitle = document.querySelector('.row.ghost-type');
+const $grassTitle = document.querySelector('.row.grass-type');
+const $groundTitle = document.querySelector('.row.ground-type');
+const $iceTitle = document.querySelector('.row.ice-type');
+const $normalTitle = document.querySelector('.row.normal-type');
+const $poisonTitle = document.querySelector('.row.poison-type');
+const $psychicTitle = document.querySelector('.row.psychic-type');
+const $rockTitle = document.querySelector('.row.rock-type');
+const $waterTitle = document.querySelector('.row.water-type');
+const $savedRow = document.querySelector('.row.saved');
+const $savedPokemon = document.querySelector('.row.saved-pokemon');
+const $pokemonInfo = document.querySelector('.row.pokemon-info');
+const $pokemonPic = document.querySelector('.row.pokemon-pic');
 
 function getPokemonName() {
   const xhr = new XMLHttpRequest();
@@ -445,7 +464,7 @@ function getPokemonName() {
 
       const pokemonName = pokemonList[i].name.toUpperCase();
       const $pokemonName = document.createElement('p');
-      $pokemonName.textContent = pokemonName + ' #' + pokemonEntryID;
+      $pokemonName.textContent = `${pokemonName} #${pokemonEntryID}`;
 
       const $pokemonImage = document.createElement('img');
       $pokemonImage.setAttribute('src', imageFolder + allPokemon[i]);
@@ -456,7 +475,7 @@ function getPokemonName() {
       $pokemonHolder.appendChild($pokemonName);
 
       const $column = document.createElement('div');
-      $column.className = 'column-one-fifth';
+      $column.className = 'column-one-fifth' + ' ' + pokemonName;
       $column.appendChild($pokemonImage);
       $column.appendChild($pokemonHolder);
 
@@ -486,12 +505,26 @@ function renderPokemon(pokemon, imagePath, row) {
   $column.appendChild($pokemonHolder);
 
   row.appendChild($column);
-
 }
+
+function getBugType() {
+  const typeXHR = new XMLHttpRequest();
+  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/7/');
+  typeXHR.responseType = 'json';
+
+  typeXHR.addEventListener('load', function (event) {
+    const bugType = typeXHR.response.pokemon;
+    for (let i = 0; i <= 11; i++) {
+      renderPokemon(bugType[i], bug[i], $bugRow);
+    }
+  });
+  typeXHR.send();
+}
+getBugType();
 
 function getDragonType() {
   const typeXHR = new XMLHttpRequest();
-  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/15');
+  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/16');
   typeXHR.responseType = 'json';
 
   typeXHR.addEventListener('load', function (event) {
@@ -506,7 +539,7 @@ getDragonType();
 
 function getNormalType() {
   const typeXHR = new XMLHttpRequest();
-  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/1/');
+  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/1');
   typeXHR.responseType = 'json';
   typeXHR.addEventListener('load', function (event) {
     const normalType = typeXHR.response.pokemon;
@@ -609,21 +642,6 @@ function getRockType() {
 }
 getRockType();
 
-function getBugType() {
-  const typeXHR = new XMLHttpRequest();
-  typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/7/');
-  typeXHR.responseType = 'json';
-
-  typeXHR.addEventListener('load', function (event) {
-    const bugType = typeXHR.response.pokemon;
-    for (let i = 0; i <= 11; i++) {
-      renderPokemon(bugType[i], bug[i], $bugRow);
-    }
-  });
-  typeXHR.send();
-}
-getBugType();
-
 function getGhostType() {
   const typeXHR = new XMLHttpRequest();
   typeXHR.open('GET', 'https://pokeapi.co/api/v2/type/8/');
@@ -715,11 +733,235 @@ function getIceType() {
 getIceType();
 
 $type.addEventListener('click', function (event) {
-  $row.className = 'row-content hidden';
-  $titleRow.className = 'row title-row hidden';
+  viewSwap('types');
 });
 
 $pokedex.addEventListener('click', function (event) {
-  $row.className = 'row-content';
-  $titleRow.className = 'row title-row';
+  viewSwap('homepage');
+});
+
+function viewSwap(name) {
+  if (name === 'onePokemon') {
+    $fireRow.className = 'row fire hidden';
+    $waterRow.className = 'row water hidden';
+    $bugRow.className = 'row bug hidden';
+    $dragonRow.className = 'row dragon hidden';
+    $electricRow.className = 'row electric hidden';
+    $fightingRow.className = 'row fighting hidden';
+    $flyingRow.className = 'row flying hidden';
+    $ghostRow.className = 'row ghost hidden';
+    $grassRow.className = 'row grass hidden';
+    $groundRow.className = 'row ground hidden';
+    $iceRow.className = 'row ice hidden';
+    $normalRow.className = 'row normal hidden';
+    $poisonRow.className = 'row poison hidden';
+    $psychicRow.className = 'row psychic hidden';
+    $rockRow.className = 'row rock hidden';
+    $row.className = 'row-content hidden';
+    $titleRow.className = 'row title-row hidden';
+    $bugTitle.className = 'row bug-type hidden';
+    $dragonTitle.className = 'row dragon-type hidden';
+    $electricTitle.className = 'row electric-type hidden';
+    $fightingTitle.className = 'row fighting-type hidden';
+    $fireTitle.className = 'row fire-type hidden';
+    $flyingTitle.className = 'row flying-type hidden';
+    $ghostTitle.className = 'row ghost-type hidden';
+    $grassTitle.className = 'row grass-type hidden';
+    $groundTitle.className = 'row ground-type hidden';
+    $iceTitle.className = 'row ice-type hidden';
+    $normalTitle.className = 'row normal-type hidden';
+    $poisonTitle.className = 'row poison-type hidden';
+    $psychicTitle.className = 'row psychic-type hidden';
+    $rockTitle.className = 'row rock-type hidden';
+    $waterTitle.className = 'row water-type hidden';
+    $savedRow.className = 'row saved hidden';
+    $savedPokemon.className = 'row saved-pokemon hidden';
+    $pokemonInfo.className = 'row pokemon-info';
+    $pokemonPic.className = 'row pokemon-pic';
+  } else if (name === 'saved') {
+    $fireRow.className = 'row fire hidden';
+    $waterRow.className = 'row water hidden';
+    $bugRow.className = 'row bug hidden';
+    $dragonRow.className = 'row dragon hidden';
+    $electricRow.className = 'row electric hidden';
+    $fightingRow.className = 'row fighting hidden';
+    $flyingRow.className = 'row flying hidden';
+    $ghostRow.className = 'row ghost hidden';
+    $grassRow.className = 'row grass hidden';
+    $groundRow.className = 'row ground hidden';
+    $iceRow.className = 'row ice hidden';
+    $normalRow.className = 'row normal hidden';
+    $poisonRow.className = 'row poison hidden';
+    $psychicRow.className = 'row psychic hidden';
+    $rockRow.className = 'row rock hidden';
+    $row.className = 'row-content hidden';
+    $titleRow.className = 'row title-row hidden';
+    $bugTitle.className = 'row bug-type hidden';
+    $dragonTitle.className = 'row dragon-type hidden';
+    $electricTitle.className = 'row electric-type hidden';
+    $fightingTitle.className = 'row fighting-type hidden';
+    $fireTitle.className = 'row fire-type hidden';
+    $flyingTitle.className = 'row flying-type hidden';
+    $ghostTitle.className = 'row ghost-type hidden';
+    $grassTitle.className = 'row grass-type hidden';
+    $groundTitle.className = 'row ground-type hidden';
+    $iceTitle.className = 'row ice-type hidden';
+    $normalTitle.className = 'row normal-type hidden';
+    $poisonTitle.className = 'row poison-type hidden';
+    $psychicTitle.className = 'row psychic-type hidden';
+    $rockTitle.className = 'row rock-type hidden';
+    $waterTitle.className = 'row water-type hidden';
+    $savedRow.className = 'row saved';
+    $savedPokemon.className = 'row saved-pokemon';
+    $pokemonInfo.className = 'row pokemon-info hidden';
+    $pokemonPic.className = 'row pokemon-pic hidden';
+  } else if (name === 'types') {
+    $fireRow.className = 'row fire';
+    $waterRow.className = 'row water';
+    $bugRow.className = 'row bug';
+    $dragonRow.className = 'row dragon';
+    $electricRow.className = 'row electric';
+    $fightingRow.className = 'row fighting';
+    $flyingRow.className = 'row flying';
+    $ghostRow.className = 'row ghost';
+    $grassRow.className = 'row grass';
+    $groundRow.className = 'row ground';
+    $iceRow.className = 'row ice';
+    $normalRow.className = 'row normal';
+    $poisonRow.className = 'row poison';
+    $psychicRow.className = 'row psychic';
+    $rockRow.className = 'row rock';
+    $row.className = 'row-content hidden';
+    $titleRow.className = 'row title-row hidden';
+    $bugTitle.className = 'row bug-type';
+    $dragonTitle.className = 'row dragon-type';
+    $electricTitle.className = 'row electric-type';
+    $fightingTitle.className = 'row fighting-type';
+    $fireTitle.className = 'row fire-type';
+    $flyingTitle.className = 'row flying-type';
+    $ghostTitle.className = 'row ghost-type';
+    $grassTitle.className = 'row grass-type';
+    $groundTitle.className = 'row ground-type';
+    $iceTitle.className = 'row ice-type';
+    $normalTitle.className = 'row normal-type';
+    $poisonTitle.className = 'row poison-type';
+    $psychicTitle.className = 'row psychic-type';
+    $rockTitle.className = 'row rock-type';
+    $waterTitle.className = 'row water-type';
+    $savedRow.className = 'row saved hidden';
+    $savedPokemon.className = 'row saved-pokemon hidden';
+    $pokemonInfo.className = 'row pokemon-info hidden';
+    $pokemonPic.className = 'row pokemon-pic hidden';
+  } else if (name === 'homepage') {
+    $fireRow.className = 'row fire hidden';
+    $waterRow.className = 'row water hidden';
+    $bugRow.className = 'row bug hidden';
+    $dragonRow.className = 'row dragon hidden';
+    $electricRow.className = 'row electric hidden';
+    $fightingRow.className = 'row fighting hidden';
+    $flyingRow.className = 'row flying hidden';
+    $ghostRow.className = 'row ghost hidden';
+    $grassRow.className = 'row grass hidden';
+    $groundRow.className = 'row ground hidden';
+    $iceRow.className = 'row ice hidden';
+    $normalRow.className = 'row normal hidden';
+    $poisonRow.className = 'row poison hidden';
+    $psychicRow.className = 'row psychic hidden';
+    $rockRow.className = 'row rock hidden';
+    $row.className = 'row-content';
+    $titleRow.className = 'row title-row';
+    $bugTitle.className = 'row bug-type hidden';
+    $dragonTitle.className = 'row dragon-type hidden';
+    $electricTitle.className = 'row electric-type hidden';
+    $fightingTitle.className = 'row fighting-type hidden';
+    $fireTitle.className = 'row fire-type hidden';
+    $flyingTitle.className = 'row flying-type hidden';
+    $ghostTitle.className = 'row ghost-type hidden';
+    $grassTitle.className = 'row grass-type hidden';
+    $groundTitle.className = 'row ground-type hidden';
+    $iceTitle.className = 'row ice-type hidden';
+    $normalTitle.className = 'row normal-type hidden';
+    $poisonTitle.className = 'row poison-type hidden';
+    $psychicTitle.className = 'row psychic-type hidden';
+    $rockTitle.className = 'row rock-type hidden';
+    $waterTitle.className = 'row water-type hidden';
+    $savedRow.className = 'row saved hidden';
+    $savedPokemon.className = 'row saved-pokemon hidden';
+    $pokemonInfo.className = 'row pokemon-info hidden';
+    $pokemonPic.className = 'row pokemon-pic hidden';
+  }
+}
+const $oneRowPokemonPic = document.querySelector('.row.pokemon-pic');
+
+$row.addEventListener('click', function (event) {
+  const selectedPokemon = event.target.getAttribute('src');
+  const selectedPokemonName = event.target.getAttribute('alt');
+
+  const existingPokemon = $oneRowPokemonPic.querySelector(`img[src="${selectedPokemon}"]`);
+
+  if (!existingPokemon) {
+    const $existingContent = $oneRowPokemonPic.querySelectorAll('.column-half');
+    for (let i = 0; i < $existingContent.length; i++) {
+      const element = $existingContent[i];
+      element.remove();
+    }
+
+    const $existingColumns = document.querySelectorAll('.column');
+    for (let i = 0; i < $existingColumns.length; i++) {
+      const element = $existingColumns[i];
+      element.remove();
+    }
+
+    const $pokemonPic = document.createElement('img');
+    $pokemonPic.setAttribute('src', selectedPokemon);
+    $pokemonPic.setAttribute('alt', selectedPokemonName);
+
+    const $weak = document.createElement('ul');
+    const $weak1 = document.createElement('li');
+    $weak1.textContent = 'No damage to:';
+    $weak.appendChild($weak1);
+
+    const $columnHalf = document.createElement('div');
+    $columnHalf.className = 'column-half';
+    $columnHalf.appendChild($weak);
+
+    const $columnSelect = document.createElement('div');
+    $columnSelect.className = 'column-half select';
+    $columnSelect.appendChild($pokemonPic);
+
+    const formattedPokemonName = selectedPokemon.replace('images/', '').replace('.gif', '');
+
+    const $pokemonTitle = document.createElement('h2');
+    $pokemonTitle.setAttribute('id', 'pokemon-name');
+    $pokemonTitle.textContent = formattedPokemonName.toUpperCase();
+
+    const $icon = document.createElement('i');
+    $icon.className = 'fa-solid fa-circle-plus fa-2xl';
+
+    $icon.addEventListener('click', function () {
+
+      const savedPokemon = {
+        name: formattedPokemonName.toUpperCase(),
+        image: selectedPokemon
+      };
+      // eslint-disable-next-line no-undef
+      pokemonData.saved.push(savedPokemon);
+      viewSwap('saved');
+    });
+
+    const $pageTitle = document.createElement('div');
+    $pageTitle.className = 'page-title one-pokemon';
+    $pageTitle.appendChild($pokemonTitle);
+    $pageTitle.appendChild($icon);
+
+    const $column = document.createElement('div');
+    $column.className = 'column';
+    $column.appendChild($pageTitle);
+
+    $oneRowPokemonPic.appendChild($columnSelect);
+    $oneRowPokemonPic.appendChild($columnHalf);
+    $pokemonInfo.appendChild($column);
+
+    viewSwap('onePokemon');
+  }
 });

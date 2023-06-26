@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
+  <title>Pokedex Types</title>
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/pokemon-solid">
@@ -53,7 +56,7 @@
     </div>
 
     <!-- Types -->
-    <div class="row">
+    <div class="row bug-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Bug</h2>
@@ -71,7 +74,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row dragon-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Dragon</h2>
@@ -82,7 +85,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row electric-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Electric</h2>
@@ -93,7 +96,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row fighting-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Fighting</h2>
@@ -104,7 +107,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row fire-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Fire</h2>
@@ -115,7 +118,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row flying-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Flying</h2>
@@ -126,7 +129,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row ghost-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Ghost</h2>
@@ -137,7 +140,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row grass-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Grass</h2>
@@ -148,7 +151,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row ground-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Ground</h2>
@@ -159,7 +162,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row ice-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Ice</h2>
@@ -170,7 +173,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row normal-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Normal</h2>
@@ -181,7 +184,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row poison-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Poison</h2>
@@ -192,7 +195,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row psychic-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Psychic</h2>
@@ -203,7 +206,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row rock-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Rock</h2>
@@ -214,7 +217,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row water-type">
       <div class="column-half">
         <div class="title-page">
           <h2>Water</h2>
@@ -226,14 +229,14 @@
     </div>
 
     <!-- Saved -->
-    <div class="row">
+    <div class="row saved">
       <div class="column-half">
         <div class="title-page">
           <h2>Saved</h2>
         </div>
       </div>
     </div>
-    <div class="row body-content">
+    <div class="row saved-pokemon">
       <div class="column-one-fifth">
         <img src="images/piikachu.png" alt="pikachu">
         <div class="pokemon-name">
@@ -243,29 +246,14 @@
     </div>
 
     <!-- Pokemon Info -->
-    <div class="row">
+    <div class="row pokemon-info">
       <div class="column">
         <div class="title-page">
-          <h2>Pikachu</h2>
+          <h2 id="pokemon-name"></h2>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="column-half">
-        <img src="images/piikachu.png" alt="pikachu">
-        <h4>Electric</h4>
-        <h4>Type</h4>
-      </div>
-      <div class="column-half">
-        <ul>
-          <li>No damage to:</li>
-          <li>Half damage to:</li>
-          <li>Double damage to:</li>
-          <li>No damage from:</li>
-          <li>Half damage from:</li>
-          <li>Double damage from:</li>
-        </ul>
-      </div>
+    <div class="row pokemon-pic">
 
     </div>
   </div>

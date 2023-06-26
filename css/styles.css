@@ -13,6 +13,9 @@ h2 {
 
 li {
   font-family: sans-serif;
+  list-style-type: none;
+  line-height: 3rem;
+  letter-spacing: 0;
 }
 
 p {
@@ -36,4 +39,12 @@ h1:hover {
 
 .navbar-type:hover {
   cursor: pointer;
+}
+
+.row-content > .column-one-fifth > img:hover {
+  cursor: pointer;
+}
+
+i {
+  color: rgb(56, 92, 169);
 }
