@@ -432,6 +432,7 @@ const $rockRow = document.querySelector('.row.rock');
 const $titleRow = document.querySelector('.row.title-row');
 const $type = document.querySelector('.navbar-type');
 const $pokedex = document.querySelector('h1');
+const $saved = document.querySelector('.navbar-saved');
 const $bugTitle = document.querySelector('.row.bug-type');
 const $dragonTitle = document.querySelector('.row.dragon-type');
 const $electricTitle = document.querySelector('.row.electric-type');
@@ -451,6 +452,8 @@ const $savedRow = document.querySelector('.row.saved');
 const $savedPokemon = document.querySelector('.row.saved-pokemon');
 const $pokemonInfo = document.querySelector('.row.pokemon-info');
 const $pokemonPic = document.querySelector('.row.pokemon-pic');
+const $rowSavedPokemon = document.querySelector('.row.saved-pokemon');
+const $oneRowPokemonPic = document.querySelector('.row.pokemon-pic');
 
 function getPokemonName() {
   const xhr = new XMLHttpRequest();
@@ -485,6 +488,118 @@ function getPokemonName() {
   xhr.send();
 }
 getPokemonName();
+
+$row.addEventListener('click', function (event) {
+  const selectedPokemon = event.target.getAttribute('src');
+  const selectedPokemonName = event.target.getAttribute('alt');
+
+  const existingPokemon = $oneRowPokemonPic.querySelector(`img[src="${selectedPokemon}"]`);
+
+  if (!existingPokemon) {
+    const $existingContent = $oneRowPokemonPic.querySelectorAll('.column-half');
+    for (let i = 0; i < $existingContent.length; i++) {
+      const element = $existingContent[i];
+      element.remove();
+    }
+
+    const $existingColumns = document.querySelectorAll('.column');
+    for (let i = 0; i < $existingColumns.length; i++) {
+      const element = $existingColumns[i];
+      element.remove();
+    }
+
+    const $pokemonPic = document.createElement('img');
+    $pokemonPic.setAttribute('src', selectedPokemon);
+    $pokemonPic.setAttribute('alt', selectedPokemonName);
+
+    const $weak = document.createElement('ul');
+    const $weak1 = document.createElement('li');
+    $weak1.textContent = 'No damage to:';
+    $weak.appendChild($weak1);
+
+    const $columnHalf = document.createElement('div');
+    $columnHalf.className = 'column-half';
+    $columnHalf.appendChild($weak);
+
+    const $columnSelect = document.createElement('div');
+    $columnSelect.className = 'column-half select';
+    $columnSelect.appendChild($pokemonPic);
+
+    const formattedPokemonName = selectedPokemon.replace('images/', '').replace('.gif', '');
+
+    const $pokemonTitle = document.createElement('h2');
+    $pokemonTitle.setAttribute('id', 'pokemon-name');
+    $pokemonTitle.textContent = formattedPokemonName.toUpperCase();
+
+    const $icon = document.createElement('i');
+    $icon.className = 'fa-solid fa-circle-plus fa-2xl';
+
+    $icon.addEventListener('click', function () {
+
+      const savedPokemon = {
+        name: formattedPokemonName.toUpperCase(),
+        image: selectedPokemon
+      };
+
+      let isPokemonSaved = false;
+      // eslint-disable-next-line no-undef
+      for (let i = 0; i < pokemonData.saved.length; i++) {
+        // eslint-disable-next-line no-undef
+        if (pokemonData.saved[i].name === savedPokemon.name) {
+          isPokemonSaved = true;
+          break;
+        }
+      }
+
+      if (!isPokemonSaved) {
+        // eslint-disable-next-line no-undef
+        pokemonData.saved.unshift(savedPokemon);
+        // eslint-disable-next-line no-undef
+        for (let i = 0; i < pokemonData.saved.length; i++) {
+          const $columnFifth = document.createElement('div');
+          $columnFifth.className = 'column-one-fifth';
+
+          const $savedImage = document.createElement('img');
+          // eslint-disable-next-line no-undef
+          $savedImage.setAttribute('src', pokemonData.saved[i].image);
+          $columnFifth.appendChild($savedImage);
+
+          const $savedNameHolder = document.createElement('div');
+          $savedNameHolder.className = 'pokemon-name';
+          $columnFifth.appendChild($savedNameHolder);
+
+          const $savedName = document.createElement('h5');
+          // eslint-disable-next-line no-undef
+          $savedName.textContent = pokemonData.saved[i].name;
+          $savedNameHolder.appendChild($savedName);
+
+          $rowSavedPokemon.appendChild($columnFifth);
+
+          viewSwap('saved');
+        }
+      }
+    });
+
+    const $pageTitle = document.createElement('div');
+    $pageTitle.className = 'page-title one-pokemon';
+    $pageTitle.appendChild($pokemonTitle);
+    $pageTitle.appendChild($icon);
+
+    const $column = document.createElement('div');
+    $column.className = 'column';
+    $column.appendChild($pageTitle);
+
+    $oneRowPokemonPic.appendChild($columnSelect);
+    $oneRowPokemonPic.appendChild($columnHalf);
+    $pokemonInfo.appendChild($column);
+
+    viewSwap('onePokemon');
+  }
+});
+
+$saved.addEventListener('click', function (event) {
+  viewSwap('saved');
+});
 
 function renderPokemon(pokemon, imagePath, row) {
   const pokemonName = pokemon.pokemon.name.toUpperCase();
@@ -891,77 +1006,3 @@ function viewSwap(name) {
     $pokemonPic.className = 'row pokemon-pic hidden';
   }
 }
-const $oneRowPokemonPic = document.querySelector('.row.pokemon-pic');
-
-$row.addEventListener('click', function (event) {
-  const selectedPokemon = event.target.getAttribute('src');
-  const selectedPokemonName = event.target.getAttribute('alt');
-
-  const existingPokemon = $oneRowPokemonPic.querySelector(`img[src="${selectedPokemon}"]`);
-
-  if (!existingPokemon) {
-    const $existingContent = $oneRowPokemonPic.querySelectorAll('.column-half');
-    for (let i = 0; i < $existingContent.length; i++) {
-      const element = $existingContent[i];
-      element.remove();
-    }
-
-    const $existingColumns = document.querySelectorAll('.column');
-    for (let i = 0; i < $existingColumns.length; i++) {
-      const element = $existingColumns[i];
-      element.remove();
-    }
-
-    const $pokemonPic = document.createElement('img');
-    $pokemonPic.setAttribute('src', selectedPokemon);
-    $pokemonPic.setAttribute('alt', selectedPokemonName);
-
-    const $weak = document.createElement('ul');
-    const $weak1 = document.createElement('li');
-    $weak1.textContent = 'No damage to:';
-    $weak.appendChild($weak1);
-
-    const $columnHalf = document.createElement('div');
-    $columnHalf.className = 'column-half';
-    $columnHalf.appendChild($weak);
-
-    const $columnSelect = document.createElement('div');
-    $columnSelect.className = 'column-half select';
-    $columnSelect.appendChild($pokemonPic);
-
-    const formattedPokemonName = selectedPokemon.replace('images/', '').replace('.gif', '');
-
-    const $pokemonTitle = document.createElement('h2');
-    $pokemonTitle.setAttribute('id', 'pokemon-name');
-    $pokemonTitle.textContent = formattedPokemonName.toUpperCase();
-
-    const $icon = document.createElement('i');
-    $icon.className = 'fa-solid fa-circle-plus fa-2xl';
-
-    $icon.addEventListener('click', function () {
-
-      const savedPokemon = {
-        name: formattedPokemonName.toUpperCase(),
-        image: selectedPokemon
-      };
-      // eslint-disable-next-line no-undef
-      pokemonData.saved.push(savedPokemon);
-      viewSwap('saved');
-    });
-
-    const $pageTitle = document.createElement('div');
-    $pageTitle.className = 'page-title one-pokemon';
-    $pageTitle.appendChild($pokemonTitle);
-    $pageTitle.appendChild($icon);
-
-    const $column = document.createElement('div');
-    $column.className = 'column';
-    $column.appendChild($pageTitle);
-
-    $oneRowPokemonPic.appendChild($columnSelect);
-    $oneRowPokemonPic.appendChild($columnHalf);
-    $pokemonInfo.appendChild($column);
-
-    viewSwap('onePokemon');
-  }
-});
