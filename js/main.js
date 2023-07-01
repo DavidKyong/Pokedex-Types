@@ -547,6 +547,8 @@ $row.addEventListener('click', function (event) {
         // eslint-disable-next-line no-undef
         if (pokemonData.saved[i].name === savedPokemon.name) {
           isPokemonSaved = true;
+          alert('Pokemon already saved');
+
           break;
         }
       }
