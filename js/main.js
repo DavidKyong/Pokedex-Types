@@ -550,35 +550,13 @@ $row.addEventListener('click', function (event) {
           break;
         }
       }
-
       if (!isPokemonSaved) {
         // eslint-disable-next-line no-undef
         pokemonData.saved.unshift(savedPokemon);
-        // eslint-disable-next-line no-undef
-        for (let i = 0; i < pokemonData.saved.length; i++) {
-          const $columnFifth = document.createElement('div');
-          $columnFifth.className = 'column-one-fifth';
-
-          const $savedImage = document.createElement('img');
-          // eslint-disable-next-line no-undef
-          $savedImage.setAttribute('src', pokemonData.saved[i].image);
-          $columnFifth.appendChild($savedImage);
-
-          const $savedNameHolder = document.createElement('div');
-          $savedNameHolder.className = 'pokemon-name';
-          $columnFifth.appendChild($savedNameHolder);
-
-          const $savedName = document.createElement('h5');
-          // eslint-disable-next-line no-undef
-          $savedName.textContent = pokemonData.saved[i].name;
-          $savedNameHolder.appendChild($savedName);
-
-          $rowSavedPokemon.appendChild($columnFifth);
-
-          viewSwap('saved');
-        }
+        location.reload();
       }
-    });
+    }
+    );
 
     const $pageTitle = document.createElement('div');
     $pageTitle.className = 'page-title one-pokemon';
@@ -598,7 +576,29 @@ $row.addEventListener('click', function (event) {
 });
 
 $saved.addEventListener('click', function (event) {
-  viewSwap('saved');
+  // eslint-disable-next-line no-undef
+  for (let i = 0; i < pokemonData.saved.length; i++) {
+    const $columnFifth = document.createElement('div');
+    $columnFifth.className = 'column-one-fifth';
+
+    const $savedImage = document.createElement('img');
+    // eslint-disable-next-line no-undef
+    $savedImage.setAttribute('src', pokemonData.saved[i].image);
+    $columnFifth.appendChild($savedImage);
+
+    const $savedNameHolder = document.createElement('div');
+    $savedNameHolder.className = 'pokemon-name';
+    $columnFifth.appendChild($savedNameHolder);
+
+    const $savedName = document.createElement('h5');
+    // eslint-disable-next-line no-undef
+    $savedName.textContent = pokemonData.saved[i].name;
+    $savedNameHolder.appendChild($savedName);
+
+    $rowSavedPokemon.appendChild($columnFifth);
+
+    viewSwap('saved');
+  }
 });
 
 function renderPokemon(pokemon, imagePath, row) {
