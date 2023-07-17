@@ -1,3 +1,5 @@
+/* global pokemonData */
+
 const imageFolder = 'images/';
 
 const allPokemon = [
@@ -455,6 +457,15 @@ const $pokemonPic = document.querySelector('.row.pokemon-pic');
 const $rowSavedPokemon = document.querySelector('.row.saved-pokemon');
 const $oneRowPokemonPic = document.querySelector('.row.pokemon-pic');
 
+document.addEventListener('DOMContentLoaded', function (event) {
+
+  saved(pokemonData.saved);
+  $saved.prepend(pokemonData.saved);
+  $saved.textContent = 'Saved';
+
+  viewSwap('homepage');
+});
+
 function getPokemonName() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon?limit=151');
@@ -542,20 +553,17 @@ $row.addEventListener('click', function (event) {
       };
 
       let isPokemonSaved = false;
-      // eslint-disable-next-line no-undef
       for (let i = 0; i < pokemonData.saved.length; i++) {
-        // eslint-disable-next-line no-undef
         if (pokemonData.saved[i].name === savedPokemon.name) {
           isPokemonSaved = true;
           alert('Pokemon already saved');
-
-          break;
         }
       }
       if (!isPokemonSaved) {
-        // eslint-disable-next-line no-undef
+
         pokemonData.saved.unshift(savedPokemon);
-        location.reload();
+        $saved.append(saved([savedPokemon]));
+        $saved.textContent = 'Saved';
       }
     }
     );
@@ -577,31 +585,32 @@ $row.addEventListener('click', function (event) {
   }
 });
 
-$saved.addEventListener('click', function (event) {
-  // eslint-disable-next-line no-undef
-  for (let i = 0; i < pokemonData.saved.length; i++) {
+function saved(savedPokemon) {
+  $saved.textContent = 'Saved';
+
+  savedPokemon = savedPokemon.reverse();
+
+  for (let i = 0; i < savedPokemon.length; i++) {
     const $columnFifth = document.createElement('div');
     $columnFifth.className = 'column-one-fifth';
 
     const $savedImage = document.createElement('img');
-    // eslint-disable-next-line no-undef
-    $savedImage.setAttribute('src', pokemonData.saved[i].image);
-    $columnFifth.appendChild($savedImage);
+    $savedImage.setAttribute('src', savedPokemon[i].image);
+    $columnFifth.append($savedImage);
 
     const $savedNameHolder = document.createElement('div');
     $savedNameHolder.className = 'pokemon-name';
-    $columnFifth.appendChild($savedNameHolder);
+    $columnFifth.append($savedNameHolder);
 
     const $savedName = document.createElement('h5');
-    // eslint-disable-next-line no-undef
-    $savedName.textContent = pokemonData.saved[i].name;
-    $savedNameHolder.appendChild($savedName);
+    $savedName.textContent = savedPokemon[i].name;
+    $savedNameHolder.append($savedName);
 
-    $rowSavedPokemon.appendChild($columnFifth);
+    $rowSavedPokemon.prepend($columnFifth);
 
     viewSwap('saved');
   }
-});
+}
 
 function renderPokemon(pokemon, imagePath, row) {
   const pokemonName = pokemon.pokemon.name.toUpperCase();
@@ -623,6 +632,10 @@ function renderPokemon(pokemon, imagePath, row) {
 
   row.appendChild($column);
 }
+
+$saved.addEventListener('click', function (event) {
+  viewSwap('saved');
+});
 
 function getBugType() {
   const typeXHR = new XMLHttpRequest();
