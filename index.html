@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,13 @@
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-  integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/pokemon-solid">
 </head>
+
 <body>
   <!-- Navbar -->
   <header>
@@ -24,7 +26,7 @@
       </div>
       <div class="column-half navbar-sub">
         <div class="saved">
-          <h4>Saved</h4>
+          <h4 class="navbar-saved">Saved</h4>
         </div>
         <div class="types">
           <h4 class="navbar-type">Types</h4>
@@ -40,11 +42,11 @@
     <div class="row title-row">
       <div class="column-half">
         <div class="title-page">
-          <h2 >Pokemon</h2>
+          <h2>Pokemon</h2>
         </div>
       </div>
       <div class="column-half align">
-        <div class="search">
+        <div class="search-bar">
           <input type="text" id="search-bar" placeholder="Search">
         </div>
       </div>
@@ -53,6 +55,9 @@
     <!-- Pokemon -->
     <div class="row-content">
 
+    </div>
+    <div>
+      <p class="none hidden">No Matches Found</p>
     </div>
 
     <!-- Types -->
@@ -237,12 +242,7 @@
       </div>
     </div>
     <div class="row saved-pokemon">
-      <div class="column-one-fifth">
-        <img src="images/piikachu.png" alt="pikachu">
-        <div class="pokemon-name">
-          <h5>Pikachu #25</h5>
-        </div>
-      </div>
+
     </div>
 
     <!-- Pokemon Info -->
@@ -262,4 +262,5 @@
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

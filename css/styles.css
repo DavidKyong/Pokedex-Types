@@ -20,6 +20,9 @@ li {
 
 p {
   font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 header {
@@ -33,15 +36,10 @@ input {
   border-radius: 4px;
 }
 
-h1:hover {
-  cursor: pointer;
-}
-
-.navbar-type:hover {
-  cursor: pointer;
-}
-
-.row-content > .column-one-fifth > img:hover {
+h1:hover,
+.navbar-type:hover,
+.row-content > .column-one-fifth > img:hover,
+.navbar-saved:hover {
   cursor: pointer;
 }
 
