@@ -870,6 +870,38 @@ $pokedex.addEventListener('click', function (event) {
   viewSwap('homepage');
 });
 
+const $searchInput = document.querySelector('.search-bar');
+const $none = document.querySelector('.none');
+
+$searchInput.addEventListener('input', function (event) {
+  const searchTerm = event.target.value.toLowerCase();
+  const pokemonElements = document.querySelectorAll('.column-one-fifth');
+
+  let hasMatches = false;
+
+  for (let i = 0; i < pokemonElements.length; i++) {
+    const pokemon = pokemonElements[i];
+    const className = pokemon.className;
+
+    const classNameParts = className ? className.split(' ') : [];
+
+    const pokemonName = classNameParts.length > 1 ? classNameParts[1].toLowerCase() : '';
+
+    if (pokemonName.includes(searchTerm)) {
+      pokemon.classList.remove('hidden');
+      hasMatches = true;
+    } else {
+      pokemon.classList.add('hidden');
+    }
+  }
+
+  if (!hasMatches) {
+    $none.classList.remove('hidden');
+  } else {
+    $none.classList.add('hidden');
+  }
+});
+
 function viewSwap(name) {
   if (name === 'onePokemon') {
     $fireRow.className = 'row fire hidden';
